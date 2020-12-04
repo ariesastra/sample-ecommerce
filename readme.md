@@ -11,6 +11,8 @@ You will need to install some of dependencies, this is a list :
 - [React Bootstrap](https://react-bootstrap.github.io/getting-started/introduction/) - Frontend Framework
 - [Fontawesome](https://cdnjs.com/libraries/font-awesome) - CDNJS.com for Font Awesome
 - [Bootswatch](https://bootswatch.com/) - Bootstrap Themes
+- [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) - React Dev Tools for Chorme Extension
+- [React Router DOM](https://www.npmjs.com/package/react-router-dom) - React Router Dom
 
 ### Installing
 
