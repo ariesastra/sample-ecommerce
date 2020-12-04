@@ -1,10 +1,19 @@
 import React from 'react';
+import {Container} from 'react-bootstrap';
+import Header from './components/Headers';
+import Footer from './components/Footer';
 
 function App() {
   return (
     // Fragment (is empty element)
     <>
-    <h1>Welcome to Shopyey</h1>
+      <Header/>
+      <Container>
+      <main className="py-3">
+        <h1>Welcome to Shopyey</h1>
+      </main>
+      </Container>
+      <Footer/>
     </>
   )
 }
