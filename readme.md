@@ -15,6 +15,9 @@ You will need to install some of dependencies, this is a list :
 - [React Router DOM](https://www.npmjs.com/package/react-router-dom) - React Router Dom
 - [React Router Bootstrap](https://www.npmjs.com/package/react-router-bootstrap) - React Router Bootstrap
 - [Express](https://www.npmjs.com/package/express) - Express Node
+- [Nodemon](https://www.npmjs.com/package/nodemon) - Nodemon
+- [Concurrently](https://www.npmjs.com/package/concurrently) - Concurrently
+- [Dotenv](https://www.npmjs.com/package/dotenv) - Dotenv
 
 ### Installing
 
