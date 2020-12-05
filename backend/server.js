@@ -1,6 +1,8 @@
-const express = require('express')
-const products = require('./data/products')
-const dotenv = require('dotenv')
+// IMPORT LIKE FRONTEND JAVASCRIPT
+// this is because im using type module on Node
+import express from 'express'
+import dotenv from 'dotenv'
+import products from './data/products.js'
 
 dotenv.config()
 

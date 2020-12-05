@@ -15,9 +15,10 @@ You will need to install some of dependencies, this is a list :
 - [React Router DOM](https://www.npmjs.com/package/react-router-dom) - React Router Dom
 - [React Router Bootstrap](https://www.npmjs.com/package/react-router-bootstrap) - React Router Bootstrap
 - [Express](https://www.npmjs.com/package/express) - Express Node
-- [Nodemon](https://www.npmjs.com/package/nodemon) - Nodemon
-- [Concurrently](https://www.npmjs.com/package/concurrently) - Concurrently
-- [Dotenv](https://www.npmjs.com/package/dotenv) - Dotenv
+- [Nodemon](https://www.npmjs.com/package/nodemon) - Nodemon for watching nodejs env
+- [Concurrently](https://www.npmjs.com/package/concurrently) - Concurrently for running server both nodejs & react
+- [Dotenv](https://www.npmjs.com/package/dotenv) - Dotenv for setting up .env
+- [Module](https://nodejs.org/dist/latest-v14.x/docs/api/esm.html) - Using Module for Node.js so script will be same
 
 ### Installing
 

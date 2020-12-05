@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "MERN for learning ecommerce ",
   "main": "server.js",
+  "type": "module",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
