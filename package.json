@@ -1,0 +1,31 @@
+{
+  "name": "sample-ecommerce",
+  "version": "1.0.0",
+  "description": "MERN for learning ecommerce ",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react-router-bootstrap": "^0.25.0",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
+  },
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ariesastra/sample-ecommerce.git"
+  },
+  "author": "Arie Sastra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ariesastra/sample-ecommerce/issues"
+  },
+  "homepage": "https://github.com/ariesastra/sample-ecommerce#readme"
+}

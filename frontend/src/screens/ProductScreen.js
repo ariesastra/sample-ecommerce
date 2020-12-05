@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 // Dependencies
 import {Link} from 'react-router-dom'
@@ -6,13 +6,21 @@ import {Row, Col, Image, ListGroup, Card, Button, ListGroupItem} from 'react-boo
 
 // Component
 import Rating from '../components/Rating'
-import products from '../products'
+import Axios from 'axios'
 
 // Style
 
 const ProductScreen = ({match}) => {
-    console.log(match.params.id);
-    const product = products.find((p) => p._id === match.params.id)
+    const [product, setProduct] = useState({})
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const {data} = await Axios.get(`/api/products/${match.params.id}`)
+            setProduct(data)
+        }
+
+        fetchProduct()
+    }, [match])
 
     return (
         <>
