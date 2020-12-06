@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Airpods Wireless Bluetooth Headphones',
     image: '/images/airpods.jpg',
     description:
@@ -13,7 +12,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '2',
     name: 'iPhone 11 Pro 256GB Memory',
     image: '/images/phone.jpg',
     description:
@@ -26,7 +24,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: '12',
     name: 'iPhone 12 mini 256GB Memory',
     image: '/images/iphone-12-mini.webp',
     description:
@@ -39,7 +36,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: '3',
     name: 'Cannon EOS 80D DSLR Camera',
     image: '/images/camera.jpg',
     description:
@@ -52,7 +48,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '4',
     name: 'Sony Playstation 4 Pro White Version',
     image: '/images/playstation.jpg',
     description:
@@ -65,7 +60,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '5',
     name: 'Logitech G-Series Gaming Mouse',
     image: '/images/mouse.jpg',
     description:
@@ -78,7 +72,6 @@ const products = [
     numReviews: 10,
   },
   {
-    _id: '6',
     name: 'Amazon Echo Dot 3rd Generation',
     image: '/images/alexa.jpg',
     description:
@@ -91,7 +84,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '7',
     name: 'Armageddon ITX Mini',
     image: '/images/armageddon-mini-itx.webp',
     description:
@@ -104,7 +96,6 @@ const products = [
     numReviews: 2,
   },
   {
-    _id: '8',
     name: 'Asus ROG Mini ITX B550 Socket AM4',
     image: '/images/asus-rog-b55-i.jpg',
     description:
@@ -117,7 +108,6 @@ const products = [
     numReviews: 22,
   },
   {
-    _id: '9',
     name: 'Deebot Ozmo 920 Mopping Robot',
     image: '/images/deebot-ozmo-920.jpg',
     description:
@@ -130,7 +120,6 @@ const products = [
     numReviews: 20,
   },
   {
-    _id: '10',
     name: 'Fujifilm XS10 Body Only Garansi 2 Tahun',
     image: '/images/fujifilm-xs-10.jpg',
     description:
@@ -143,7 +132,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '11',
     name: 'ICUE H150i RGB Pro Liquid from Corsair',
     image: '/images/icue-h150i-rgb-liquid.jpg',
     description:

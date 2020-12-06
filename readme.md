@@ -19,6 +19,11 @@ You will need to install some of dependencies, this is a list :
 - [Concurrently](https://www.npmjs.com/package/concurrently) - Concurrently for running server both nodejs & react
 - [Dotenv](https://www.npmjs.com/package/dotenv) - Dotenv for setting up .env
 - [Module](https://nodejs.org/dist/latest-v14.x/docs/api/esm.html) - Using Module for Node.js so script will be same
+- [Mongoose](https://www.npmjs.com/package/mongoose) - Mongoose is a MongoDB object modeling tool
+- [Colors](https://www.npmjs.com/package/colors) - For make Node.js colorfull [optional]
+- [bcryptjs](https://www.npmjs.com/package/bcryptjs) - Optimized bcrypt in JavaScript with zero dependencies
+- [Express Async Handler](https://www.npmjs.com/package/express-async-handler) - Simple middleware for handling exceptions inside of async express routes and passing them to your express error handlers.
+- [Redux](https://redux.js.org/introduction/getting-started) - Redux is a predictable state container for JavaScript apps.
 
 ### Installing
 
