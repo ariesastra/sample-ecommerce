@@ -24,6 +24,7 @@ You will need to install some of dependencies, this is a list :
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs) - Optimized bcrypt in JavaScript with zero dependencies
 - [Express Async Handler](https://www.npmjs.com/package/express-async-handler) - Simple middleware for handling exceptions inside of async express routes and passing them to your express error handlers.
 - [Redux](https://redux.js.org/introduction/getting-started) - Redux is a predictable state container for JavaScript apps.
+- [JSON Web Token](https://www.npmjs.com/package/jsonwebtoken) - JWT is an open standard (RFC 7519)
 
 ### Installing
 
