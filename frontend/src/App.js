@@ -13,6 +13,9 @@ import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ShippingScreen from './screens/ShippingScreen';
+import PaymentScreen from './screens/PaymentScreen';
+import PlaceorderScreen from './screens/PlaceorderScreen';
 
 // Style
 
@@ -23,6 +26,9 @@ function App() {
       <Header/>
       <main className="py-3">
         <Container>
+          <Route path='/placeorder' component={PlaceorderScreen} />
+          <Route path='/payment' component={PaymentScreen} />
+          <Route path='/shipping' component={ShippingScreen} />
           <Route path='/profile' component={ProfileScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/login' component={LoginScreen} />
