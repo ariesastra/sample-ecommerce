@@ -25,6 +25,8 @@ You will need to install some of dependencies, this is a list :
 - [Express Async Handler](https://www.npmjs.com/package/express-async-handler) - Simple middleware for handling exceptions inside of async express routes and passing them to your express error handlers.
 - [Redux](https://redux.js.org/introduction/getting-started) - Redux is a predictable state container for JavaScript apps.
 - [JSON Web Token](https://www.npmjs.com/package/jsonwebtoken) - JWT is an open standard (RFC 7519)
+- [Paypal SDK Script](https://developer.paypal.com/docs/checkout/reference/customize-sdk/) - SDK for Paypal Developer
+- [Paypal Button Ver2](https://www.npmjs.com/package/react-paypal-button-v2) - An easy and simple to use React button component to implement PayPal's Checkout with Smart Payment Buttons V2
 
 ### Installing
 
