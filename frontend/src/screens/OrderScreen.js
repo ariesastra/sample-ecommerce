@@ -14,7 +14,7 @@ import {getOrderDetails, payOrder} from '../actions/orderActions'
 import {ORDER_PAY_RESET} from '../constants/orderConstants'
 
 // Style
-import { Button, Row, Col, ListGroupItem, ListGroup, Image, Card } from 'react-bootstrap'
+import { Row, Col, ListGroupItem, ListGroup, Image, Card } from 'react-bootstrap'
 
 const OrderScreen = ({match}) => {
     const orderId = match.params.id
