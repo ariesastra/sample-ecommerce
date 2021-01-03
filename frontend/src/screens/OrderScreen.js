@@ -7,7 +7,6 @@ import axios from 'axios'
 import {PayPalButton} from 'react-paypal-button-v2'
 
 // Components
-import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import {getOrderDetails, payOrder} from '../actions/orderActions'

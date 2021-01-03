@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 // Dependecies
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 
 // Components
-import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
 import Message from '../components/Message'
 import {createOrder} from '../actions/orderActions'
@@ -51,8 +50,7 @@ const PlaceorderScreen = ({history}) => {
                 history.push(`/order/${order._id}`)
             }
         // eslint-disable-next-line
-        }, 
-        [history, success]
+        }, [history, success]
     )
 
     // PUSH ORDER TO STATE USING DISPTCH
