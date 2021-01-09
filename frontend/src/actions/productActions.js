@@ -6,7 +6,16 @@ import {
     PRODUCT_LIST_FAIL,
     PRODUCT_DETAIL_REQUEST,
     PRODUCT_DETAIL_SUCCESS,
-    PRODUCT_DETAIL_FAIL
+    PRODUCT_DETAIL_FAIL,
+    PRODUCT_DELETE_REQUEST,
+    PRODUCT_DELETE_SUCCESS,
+    PRODUCT_DELETE_FAIL,
+    PRODUCT_CREATE_REQUEST,
+    PRODUCT_CREATE_SUCCESS,
+    PRODUCT_CREATE_FAIL,
+    PRODUCT_UPDATE_REQUEST,
+    PRODUCT_UPDATE_SUCCESS,
+    PRODUCT_UPDATE_FAIL,
 } from '../constants/productConstants'
 
 // action creators
@@ -45,6 +54,110 @@ export const listProductDetail = (id) => async(dispatch) => {
     } catch (error) {
         dispatch({
             type: PRODUCT_DETAIL_FAIL,
+            payload: error.response 
+                    && error.response.data.message 
+                    ? error.response.data.message 
+                    : error.message
+        })
+    }
+}
+
+// action creators detail product
+export const productDelete = (id) => async(dispatch, getState) => {
+    try {
+        dispatch({ type: PRODUCT_DELETE_REQUEST })
+
+        // Destructure
+        const {
+            userLogin : {userInfo}
+        } = getState()
+
+        // Get Token from userInfo
+        const config = {
+            headers: {
+                'Content-Type': 'Application/JSON',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        await axios.delete(`/api/products/${id}`, config)
+
+        dispatch({
+            type: PRODUCT_DELETE_SUCCESS,
+        })
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_DELETE_FAIL,
+            payload: error.response 
+                    && error.response.data.message 
+                    ? error.response.data.message 
+                    : error.message
+        })
+    }
+}
+
+// action creators detail product
+export const productCreate = () => async(dispatch, getState) => {
+    try {
+        dispatch({ type: PRODUCT_CREATE_REQUEST })
+
+        // Destructure
+        const {
+            userLogin : {userInfo}
+        } = getState()
+
+        // Get Token from userInfo
+        const config = {
+            headers: {
+                'Content-Type': 'Application/JSON',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.post(`/api/products`, {}, config)
+
+        dispatch({
+            type: PRODUCT_CREATE_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_CREATE_FAIL,
+            payload: error.response 
+                    && error.response.data.message 
+                    ? error.response.data.message 
+                    : error.message
+        })
+    }
+}
+
+// action creators detail product
+export const productUpdate = (product) => async(dispatch, getState) => {
+    try {
+        dispatch({ type: PRODUCT_UPDATE_REQUEST })
+
+        // Destructure
+        const {
+            userLogin : {userInfo}
+        } = getState()
+
+        // Get Token from userInfo
+        const config = {
+            headers: {
+                'Content-Type': 'Application/JSON',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.put(`/api/products/${product._id}`, product, config)
+
+        dispatch({
+            type: PRODUCT_UPDATE_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_UPDATE_FAIL,
             payload: error.response 
                     && error.response.data.message 
                     ? error.response.data.message 

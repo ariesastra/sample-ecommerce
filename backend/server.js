@@ -3,6 +3,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
+import path from 'path'
 
 // dependencies
 import connectDB from './config/db.js'
@@ -12,6 +13,7 @@ import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoute from './routes/orderRoutes.js'
+import uploadRoute from './routes/uploadRoutes.js '
 
 dotenv.config()
 
@@ -35,9 +37,16 @@ app.use('/api/orders', orderRoute)
 // PAYPAL
 app.use('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))
 
+// UPLOAD
+app.use('/app/upload', uploadRoute)
+
 // ERROR HANDLING
 app.use(notFound)
 app.use(errorHandler)
+
+// MAKE STATIC UPLOADS FOLDER IN EXPRESS
+const __dirname = path.resolve()
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 const PORT = process.env.PORT || 5000
 
