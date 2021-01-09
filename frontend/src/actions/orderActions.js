@@ -12,7 +12,13 @@ import {
     ORDER_PAY_SUCCESS,
     ORDER_LIST_MY_FAIL,
     ORDER_LIST_MY_REQUEST,
-    ORDER_LIST_MY_SUCCESS
+    ORDER_LIST_MY_SUCCESS,
+    ORDER_LIST_ALL_FAIL,
+    ORDER_LIST_ALL_REQUEST,
+    ORDER_LIST_ALL_SUCCESS,
+    ORDER_DELIVER_REQUEST,
+    ORDER_DELIVER_SUCCESS,
+    ORDER_DELIVER_FAIL,
 } from '../constants/orderConstants'
 
 // ORDER CREATE ACTION
@@ -168,3 +174,84 @@ export const listMyOrders = () => async (dispatch, getState) => {
         })
     }
 }
+
+// GET ALL ORDER 
+export const listOrders = () => async (dispatch, getState) => {
+    try {
+        // GET USER DATA FROM DB
+        dispatch({
+            type: ORDER_LIST_ALL_REQUEST
+        })
+
+        // Destructure
+        const {
+            userLogin : { userInfo }
+        } = getState()
+
+        const config = {
+            headers: {
+                Authorization : `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.get(`/api/orders`, config)
+
+        // SET USER DATA
+        dispatch({
+            type: ORDER_LIST_ALL_SUCCESS,
+            payload: data
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: ORDER_LIST_ALL_FAIL,
+            payload: error.response 
+                    && error.response.data.message 
+                    ? error.response.data.message 
+                    : error.message
+        })
+    }
+}
+
+// UPDATE ORDER TO DELIVERED
+export const deliverOrder = (order) => async (dispatch, getState) => {
+    try {
+        // GET USER DATA FROM DB
+        dispatch({
+            type: ORDER_DELIVER_REQUEST
+        })
+
+        // Destructure
+        const {
+            userLogin : { userInfo }
+        } = getState()
+
+        const config = {
+            headers: {
+                Authorization : `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.put(
+            `/api/orders/${order._id}/deliver`, //URL IN BACKEND
+            {}, //DATA WANT TO BRING
+            config //CONFIG
+        )
+
+        // SET USER DATA
+        dispatch({
+            type: ORDER_DELIVER_SUCCESS,
+            payload: data
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: ORDER_DELIVER_FAIL,
+            payload: error.response 
+                    && error.response.data.message 
+                    ? error.response.data.message 
+                    : error.message
+        })
+    }
+}
+

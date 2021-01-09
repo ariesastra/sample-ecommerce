@@ -4,18 +4,24 @@ import path from 'path'
 
 const router = express.Router()
 
-const storage = multer.diskstorage({
+const storage = multer.diskStorage({
     destination(req, file, callback){
-        callback(null, 'uploads/')
+        callback(
+            null, 
+            'uploads/'
+        )
     },
     filename(req, file, callback){
-        callback(null, `${filename.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
+        callback(
+            null, 
+            `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+        )
     }
 })
 
 function checkFileType(file, callback){
     const filetypes = /jpg|jpeg|png/
-    const extname = filetypes.test(path.extname(file.originalname).toLocaleLowerCase())
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase())
     const mimetype = filetypes.test(file.mimetype)
 
     if (extname && mimetype) {

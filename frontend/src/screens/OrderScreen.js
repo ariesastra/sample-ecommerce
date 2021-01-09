@@ -9,13 +9,13 @@ import {PayPalButton} from 'react-paypal-button-v2'
 // Components
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import {getOrderDetails, payOrder} from '../actions/orderActions'
-import {ORDER_PAY_RESET} from '../constants/orderConstants'
+import {getOrderDetails, payOrder, deliverOrder} from '../actions/orderActions'
+import {ORDER_PAY_RESET, ORDER_DELIVER_RESET} from '../constants/orderConstants'
 
 // Style
-import { Row, Col, ListGroupItem, ListGroup, Image, Card } from 'react-bootstrap'
+import { Row, Col, ListGroupItem, ListGroup, Image, Card, Button } from 'react-bootstrap'
 
-const OrderScreen = ({match}) => {
+const OrderScreen = ({match, history}) => {
     const orderId = match.params.id
     const [sdkReady, setSdkReady] = useState(false)
     const dispatch = useDispatch()
@@ -27,6 +27,13 @@ const OrderScreen = ({match}) => {
     const orderPay = useSelector(state => state.orderPay)
     // Rename loading to loadingPay, success to successPay
     const {loading:loadingPay, success:successPay} = orderPay
+
+    const orderDelivered = useSelector(state => state.orderDelivered)
+    // Rename loading to loadingPay, success to successPay
+    const {loading:loadingDeliver, success:successDeliver} = orderDelivered
+
+    const userLogin = useSelector(state => state.userLogin)
+    const {userInfo} = userLogin
 
     if (!loading) {
         // Create 2 Deciaml Number after to be fix event value is 0
@@ -43,6 +50,10 @@ const OrderScreen = ({match}) => {
 
     // CHECKING ORDER
     useEffect(() => {
+        if (!userInfo) {
+            history.push('/login')
+        }
+
         // PAYPAL
         const addPaypalScript = async () => {
             const {data: clientId} = await axios.get('/api/config/paypal')
@@ -57,8 +68,9 @@ const OrderScreen = ({match}) => {
             document.body.appendChild(script)
         }
 
-        if (!order || successPay) {
+        if (!order || successPay || successDeliver) {
             dispatch({type:ORDER_PAY_RESET})
+            dispatch({type:ORDER_DELIVER_RESET})
             dispatch(getOrderDetails(orderId))
         }
         else if(!order.isPaid){
@@ -68,12 +80,16 @@ const OrderScreen = ({match}) => {
                 setSdkReady(true )
             }
         }
-    }, [dispatch, order, orderId, successPay]) 
+    }, [dispatch, order, orderId, successPay, successDeliver, history, userInfo]) 
 
 
     const successPaymentHandler = (paymentResult) => {
         console.log(paymentResult);
         dispatch(payOrder(orderId, paymentResult))
+    }
+
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order))
     }
 
     return loading 
@@ -94,7 +110,7 @@ const OrderScreen = ({match}) => {
                                     {order.shippingAddress.address}, {order.shippingAddress.city}, {order.shippingAddress.postalCode}, {order.shippingAddress.country}
                                 </p>
                                 {
-                                    order.isDeliverd 
+                                    order.isDelivered 
                                     ? <Message variant='success' >Delivered on {order.deliveredAt}</Message>
                                     : <Message variant='danger' >Not Delivered</Message>
                                 }
@@ -150,7 +166,7 @@ const OrderScreen = ({match}) => {
                                 <ListGroupItem>
                                     <Row>
                                         <Col>Items</Col>
-                                        <Col>${order.itemsPrice}</Col>
+                                        <Col>${order.totalPrice}</Col>
                                     </Row>
                                 </ListGroupItem>
                                 <ListGroupItem>
@@ -186,6 +202,14 @@ const OrderScreen = ({match}) => {
                                         />
                                     )}
                                     </ListGroup.Item>
+                                )}
+                                {loadingDeliver && <Loader />}
+                                {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                                    <ListGroupItem >
+                                        <Button type='button' className='btn btn-block' onClick={deliverHandler}>
+                                            Mark As Delivered
+                                        </Button>
+                                    </ListGroupItem>
                                 )}
                             </ListGroup>
                         </Card>
