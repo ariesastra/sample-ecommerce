@@ -29,6 +29,7 @@ You will need to install some of dependencies, this is a list :
 - [Paypal Button Ver2](https://www.npmjs.com/package/react-paypal-button-v2) - An easy and simple to use React button component to implement PayPal's Checkout with Smart Payment Buttons V2
 - [Multer](https://www.npmjs.com/package/multer) - Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
 - [Morgan](https://www.npmjs.com/package/morgan) - HTTP request logger middleware for node.js.
+- [Helmet](https://www.npmjs.com/package/react-helmet) - This reusable React component will manage all of your changes to the document head.
 
 ### Installing
 
