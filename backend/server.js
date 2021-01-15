@@ -30,10 +30,6 @@ if (process.env.NODE_ENV === 'development') {
 // FOR ALLOWING JSON DATA IN BODY [for postman post purpose]
 app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.send('API is Running....')
-})
-
 // routes
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
@@ -48,6 +44,20 @@ app.use('/api/upload', uploadRoute)
 // MAKE FOLDER UPLOADS READABLE BY NODEJS
 const __dirname = path.resolve() //mimic for readable by nodejs
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+
+// PRODUCTION METHOD
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    })
+}
+else{
+    app.get('/', (req, res) => {
+        res.send('API is Running....')
+    })
+}
 
 // ERROR HANDLING
 app.use(notFound)

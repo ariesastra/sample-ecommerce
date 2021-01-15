@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 // Dependencies
 import { Col, Row } from 'react-bootstrap'
 import {listProducts} from '../actions/productActions'
+import {Link} from 'react-router-dom'
 
 // Component
 import Product from '../components/Product'
@@ -32,10 +33,11 @@ const HomeScreen = ({match}) => {
     return (
         <>
         <Meta />
-        {/* {
+        {
             !keyword 
-            && <ProductCarousel />
-        } */}
+            ? <ProductCarousel />
+            : <Link to='/' className='btn btn-light mb-3'>Go Back</Link>
+        }
             <h1>Latest Products</h1>
             {
                 loading 
