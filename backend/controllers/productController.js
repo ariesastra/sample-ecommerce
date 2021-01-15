@@ -7,12 +7,23 @@ import Product from '../models/productModel.js'
 // @route GET /api/product
 // @access Public
 const getProduct = asyncHandler(async (req, res) => {
-    const products = await Product.find({})
+    const pageSize = 4
+    const page = Number(req.query.pageNumber) || 1
+
+    const keyword = req.query.keyword ? {
+        name : {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {}
+    
+    const count = await Product.countDocuments({...keyword})
+    const products = await Product.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1))
     // testing error
     // res.status(401)
     // throw new Error('Not Authorized !')
     
-    res.json(products)
+    res.json({products, page, pages: Math.ceil(count / pageSize)})
 })
 
 // @desc Fetch single product
@@ -97,10 +108,63 @@ const updateProduct = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc Create New Review
+// @route POST /api/product/:id/reviews
+// @access Private
+const createProductReview = asyncHandler(async (req, res) => {
+    const {
+        rating, 
+        comment
+    } = req.body
+
+    const product = await Product.findById(req.params.id)
+
+    if (product) {
+        // TO CHECK USER IS ALREADY EXIST OR NOT
+        const alreadyReviews =  product.reviews.find(rev => rev.user.toString() === req.user._id.toString())
+
+        if (alreadyReviews) {
+            res.status(400)
+            throw new Error ('Product Already Reviewed')
+        }
+
+        const review = {
+            name: req.user.name,
+            rating: Number(rating),
+            comment,
+            user: req.user._id
+        }
+
+        product.reviews.push(review)
+
+        product.numReviews = product.reviews.length
+
+        // FUNCTION FOR GET AVG. RATING
+        product.rating = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length
+
+        await product.save()
+        res.status(201).json({message:'Review Added !'})
+    } else {
+        res.status(404)
+        throw new Error('Product Not Found !')
+    }
+})
+
+// @desc GET TOP RATED PRODUCT
+// @route GET /api/product/top
+// @access Public
+const getTopProducts = asyncHandler(async (req, res) => {
+    const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+
+    res.json(products)
+})
+
 export {
         getProduct, 
         getProductById, 
         deleteProduct,
         createProduct,
-        updateProduct
+        updateProduct,
+        createProductReview,
+        getTopProducts
 }

@@ -4,6 +4,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
 import path from 'path'
+import morgan from 'morgan'
 
 // dependencies
 import connectDB from './config/db.js'
@@ -20,6 +21,11 @@ dotenv.config()
 connectDB()
 
 const app = express()
+
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+    console.log('for morgan');
+}
 
 // FOR ALLOWING JSON DATA IN BODY [for postman post purpose]
 app.use(express.json())

@@ -6,7 +6,10 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 // Component
 import Header from './components/Headers';
+import ProductCarousel from './components/ProductCarousel'
 import Footer from './components/Footer';
+
+// SCREEN
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
@@ -23,8 +26,6 @@ import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
 
-// Style
-
 function App() {
   return (
     // Fragment (is empty element)
@@ -40,12 +41,17 @@ function App() {
           <Route path='/register' component={RegisterScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/product/:id' component={ProductScreen} />
+          <Route path='/product/top' component={ProductCarousel}/>
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/admin/userlist' component={UserListScreen} />
           <Route path='/admin/user/:id/edit' component={UserEditScreen} />
-          <Route path='/admin/productlist' component={ProductListScreen} />
+          <Route path='/admin/productlist' component={ProductListScreen} exact/>
+          <Route path='/admin/productlist/:pageNumber' component={ProductListScreen}/>
           <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
           <Route path='/admin/orderlist' component={OrderListScreen} />
+          <Route path='/search/:keyword' component={HomeScreen} exact/>
+          <Route path='/page/:pageNumber' component={HomeScreen} exact/>
+          <Route path='/search/:keyword/page/:pageNumber' component={HomeScreen} exact/>
           <Route path='/' component={HomeScreen} exact/>
         </Container>
       </main>

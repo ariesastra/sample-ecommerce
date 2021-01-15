@@ -3,6 +3,10 @@ import React from 'react'
 // DEPENDENCIES
 import {LinkContainer} from 'react-router-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
+import {Route} from 'react-router-dom'
+
+// Component
+import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
 
 // Style
@@ -30,6 +34,12 @@ const Headers = () => {
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
+                        {/* 
+                        CREATE SEARCH BOX METHOD 
+                        using Route from react router DOM & history as a Props
+                        */}
+                        <Route render={({history}) => <SearchBox history={history}/>} />
+                        
                         <Nav className="ml-auto">
                             <LinkContainer to='/cart'>
                                 <Nav.Link>

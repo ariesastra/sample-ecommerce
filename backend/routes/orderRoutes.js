@@ -7,7 +7,7 @@ import {
         updateOrderToPaid,
         getMyOrder,
         getOrder,
-        updateOrderToDelivered
+        updateOrderToDelivered,
 } from '../controllers/orderController.js'
 import { protect, isAdmin } from '../middleware/authMiddleware.js'
 
