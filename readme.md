@@ -33,51 +33,28 @@ You will need to install some of dependencies, this is a list :
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+Create your own folder, and pull this git.
+After that, type text below on both root folder and frontend folder
 
 ```
-until finished
+npm install
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+After finish installing NPM, dont forget to create you own .env file, inside that .env put :
+
+- [NODE_ENV] - with your 'development mode' & 'production'
+- [PORT] - whatever port do you want to use on you local mechine
+- [MONGODB_URL] - get uri from your own mongodb atlas uri
+- [JWT_SECRET] - your jwt secreet
+- [PAYPAL_CLIENT_ID] - your paypal client id if you using paypal
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+For running this project, you can see on package.json for the command.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-- [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-- [Maven](https://maven.apache.org/) - Dependency Management
-- [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+Im using [Heroku](https://heroku.com) for testing on production environtment.
 
 ## Authors
 
